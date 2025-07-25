@@ -102,7 +102,7 @@ async def send_logs(client: Client, message: Message):
     else:
         await message.reply("No logs available.")
 
-
+# ---------- after bot.start() ----------
 bot.start()
 bot_info = bot.get_me()
 print(
@@ -115,12 +115,20 @@ print(
     "██║     ╚██████╔╝██║     ╚██████╔╝╚██████╔╝██║  ██║██║ ╚═╝ ██║██║ ╚═╝ ██║███████╗██║     ███████║\n"
     "╚═╝      ╚═════╝ ╚═╝      ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚═╝     ╚═╝╚══════╝╚═╝     ╚══════╝\n"
 )
-asyncio.get_event_loop().run_forever()
 
-import threading, subprocess, os, sys
+# ---- tiny HTTP health server ----
+import threading
+import subprocess
+import sys
+import os
+
 threading.Thread(
     target=lambda: subprocess.run(
-        [sys.executable, "app.py"], cwd=os.getcwd()
+        [sys.executable, "app.py"], cwd=os.getcwd(),  # or ["python3", "app.py"]
     ),
     daemon=True
 ).start()
+
+# ---- keep the bot alive ----
+asyncio.get_event_loop().run_forever()
+

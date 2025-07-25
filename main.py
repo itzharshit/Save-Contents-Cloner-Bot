@@ -116,3 +116,11 @@ print(
     "╚═╝      ╚═════╝ ╚═╝      ╚═════╝  ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚═╝     ╚═╝╚══════╝╚═╝     ╚══════╝\n"
 )
 asyncio.get_event_loop().run_forever()
+
+import threading, subprocess, os, sys
+threading.Thread(
+    target=lambda: subprocess.run(
+        [sys.executable, "app.py"], cwd=os.getcwd()
+    ),
+    daemon=True
+).start()

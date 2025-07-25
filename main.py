@@ -10,7 +10,6 @@ from config import Telegram
 from boot import start_client
 
 logging.basicConfig(
-    filename="logs.txt",
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s",
 )

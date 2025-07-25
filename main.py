@@ -1,6 +1,5 @@
 import os
 import threading
-import sys
 from http.server import HTTPServer, BaseHTTPRequestHandler
 
 class HealthHandler(BaseHTTPRequestHandler):
@@ -10,11 +9,11 @@ class HealthHandler(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(b"OK")
 
-def _run_health():
+def run_health():
     port = int(os.getenv("PORT", 8080))
-    HTTPServer(("0.0.0.0", port), HealthHandler).serve_forever()
+    HTTPServer(("0.0.0.0", port), HealthHandler).serve_forever()  # ← FIXED
 
-threading.Thread(target=_run_health, daemon=True).start()
+threading.Thread(target=run_health, daemon=True).start()
 
 import re
 import asyncio

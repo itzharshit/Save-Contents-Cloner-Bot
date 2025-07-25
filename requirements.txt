@@ -1,4 +1,4 @@
 pyrogram
 redis
-tgcrypto
+pyrogram[fast]
 python-dotenv

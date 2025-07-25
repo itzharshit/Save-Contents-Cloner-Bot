@@ -8,6 +8,10 @@ class HealthHandler(BaseHTTPRequestHandler):
             self.send_response(200)
             self.end_headers()
             self.wfile.write(b"OK")
+        elif self.path == "/":
+            self.send_response(200)
+            self.end_headers()
+            self.wfile.write(b"Save-Contents bot is up 👍")
 
 def run_health():
     port = int(os.getenv("PORT", 8080))
